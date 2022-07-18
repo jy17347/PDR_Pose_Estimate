@@ -14,8 +14,20 @@ class IMU_dataset():
             dataset = pd.read_csv(data_dir).to_numpy()
             data.append(dataset)
         
+        # if metrics > 3:
+        #     for pose in pose_list:
+        #         sensor_csv = os.listdir(folder + '/' + pose)
+        #         for sensor in sensor_csv:
+        #             data_dir = folder + '/' + pose + '/' + sensor   
+            
+        #         dataset = pd.read_csv(data_dir).to_numpy()
+        #         data.append(dataset)
+        
+
         self.data = data
 
+
+        
 
     def __length__(self):
 
@@ -41,4 +53,4 @@ class IMU_dataset():
                 seq_data.append(data[pose][seq:seq+frame_length, 2:5])
                 label.append(pose)
 
-        return np.array(seq_data), np.array(label)
+        return np.array(seq_data), np.array(label), label_list
