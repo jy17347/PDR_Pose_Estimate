@@ -1,2 +1,7 @@
 __pycache__/get_dataset.cpython-39.pyc
 __pycache__/model.cpython-39.pyc
+dataset/
+dataset_new/
+*.pyc
+Data 전처리.ipynb
+test/test.csv
