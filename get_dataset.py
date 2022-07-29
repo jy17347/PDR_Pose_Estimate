@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
-
+from sklearn.preprocessing import MinMaxScaler
 
 class IMU_dataset():
     
@@ -27,8 +27,6 @@ class IMU_dataset():
         self.data = data
 
 
-        
-
     def __length__(self):
 
         return len(self.data)
@@ -44,7 +42,7 @@ class IMU_dataset():
     def Sequence_data(self, frame_length):
 
         data = self.data[:]
-        label_list = os.listdir('./dataset')
+        label_list = os.listdir('./dataset_new')
         seq_data = []
         label = []
 
@@ -54,3 +52,9 @@ class IMU_dataset():
                 label.append(pose)
 
         return np.array(seq_data), np.array(label), label_list
+
+
+    def scaler(self):
+        minMaxScaler = MinMaxScaler()
+        
+        return minMaxScaler.transform(self.data)
