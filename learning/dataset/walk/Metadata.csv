@@ -1,0 +1,2 @@
+version,device name,recording time,platform,appVersion,device id,sensors,sampleRateMs
+3,SM-G991N,2022-07-14_08-28-12,android,1.9.0,8ffbb372-fe52-4a61-9de9-4998077dc4b0,Accelerometer|Gravity|Gyroscope|Orientation|Annotation|TotalAcceleration|GyroscopeUncalibrated|AccelerometerUncalibrated,0|0|0|0||0|0|0
