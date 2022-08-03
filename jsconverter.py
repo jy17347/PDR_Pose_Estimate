@@ -4,5 +4,5 @@ import os
 
 
 models = os.listdir('./models')
-model = load_model(f"models/{models[-1]}/model.h5")
+model = load_model(f"models/{models[3]}/model.h5")
 tfjs.converters.save_keras_model(model, f'models_js/' + '_model_tfjs_')
