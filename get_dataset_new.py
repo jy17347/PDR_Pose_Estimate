@@ -11,11 +11,18 @@ class IMU_dataset():
     def __init__(self, folder):
         
         data = []
-        pose_list = os.listdir('./dataset_new')
+        pose_list = os.listdir('./22_dataset')
         for pose in pose_list:
             data_dir = folder + '/' + pose
-            dataset = pd.read_csv(data_dir).to_numpy()
-            data.append(dataset)
+            gravity = pd.read_csv(data_dir+'/Gravity.csv').to_numpy()
+            gyroscope = pd.read_csv(data_dir+'/Gyroscope.csv').to_numpy()
+            orientation = pd.read_csv(data_dir+'/Orientation.csv').to_numpy()
+            # data = np.concatenate((gravity, gyroscope), axis = 1)
+            pose_data = np.concatenate((gravity[:,2:5], orientation[:,6:9]), axis = 1)
+            data.append(pose_data)
+            # data.append(gravity[:,2:5:-1])
+            # data.append(gyroscope[:,2:5:-1], axis = 1)
+            # data.append(orientation[:,6:9:-1], axis = 1)
         
         # if metrics > 3:
         #     for pose in pose_list:
@@ -26,7 +33,6 @@ class IMU_dataset():
         #         dataset = pd.read_csv(data_dir).to_numpy()
         #         data.append(dataset)
         
-
         self.data = data
 
 
@@ -53,7 +59,7 @@ class IMU_dataset():
 
         for pose in range(len(data)):
             for seq in range(np.shape(data[pose])[0] - frame_length):
-                seq_data.append(data[pose][seq:seq+frame_length, 2:8])
+                seq_data.append(data[pose][seq:seq+frame_length, :])
                 label.append(pose)
 
         for i in range(len(seq_data)):
@@ -62,3 +68,7 @@ class IMU_dataset():
 
         return np.array(seq_data), np.array(label), label_list
 
+IMU = IMU_dataset('./22_dataset')
+x_data, y_data, y_list = IMU.Sequence_data(20)
+
+print(np.shape(x_data), np.shape(y_data), np.shape(y_list))
