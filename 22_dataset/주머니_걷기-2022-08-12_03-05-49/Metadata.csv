@@ -1,0 +1,2 @@
+version,device name,recording time,platform,appVersion,device id,sensors,sampleRateMs
+3,SM-G991N,2022-08-12_03-05-49,android,1.10.1,8ffbb372-fe52-4a61-9de9-4998077dc4b0,Gravity|Gyroscope|Orientation|Annotation|GyroscopeUncalibrated,0|0|0||0
